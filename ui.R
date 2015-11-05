@@ -67,19 +67,22 @@ shinyUI(fluidPage(
 			tableOutput("Demographic.3")
 		)
 	))),
-	fluidRow(
-	column(12,
-	div(id="surveyresults",class="panel panel-default", 
-		div(class="panel-body",
-			h2("Survey Results"),
-			h3("Industry Summary"),
-			dataTableOutput("surveyresultstable"),
-			h3("Market Cap Summary"),
-			dataTableOutput("surveyresultstablemarketcap"),
-			h3("Self-Evaluation Summary"),
-			htmlOutput("surveyresultsindividual")
-			#htmlOutput("surveyresults")
-		)
+	shinyjs::hidden(div(id="results",
+    fluidRow(
+  	column(12,
+  	div(id="surveyresults",class="panel panel-default", 
+  		div(class="panel-body",
+  			h2("Survey Results"),
+  			h3("Industry Summary"),
+  			dataTableOutput("surveyresultstable"),
+  			h3("Market Cap Summary"),
+  			dataTableOutput("surveyresultstablemarketcap"),
+  			h3("Self-Evaluation Summary"),
+  			htmlOutput("surveyresultsindividual")
+  			#htmlOutput("surveyresults")
+  		  )
+  	  )
+    )
+    )
 	))
-  )
 ))

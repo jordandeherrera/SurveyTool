@@ -18,6 +18,11 @@ Qlist <- read.csv("Qlist.csv")
   toggle("loading")
   }
 
+# Function to hide the loading image
+  hidesurveyresults <- function(){
+  show("results")
+  }
+
 shinyServer(function(input, output) {
   
   # Create an empty vector to hold survey results
@@ -97,7 +102,8 @@ shinyServer(function(input, output) {
           h4("Thanks for taking the survey!  You may now view the results of the survey as well as benchmarking data in the 'Results' at the bottom of this page."),
           downloadButton('downloadData', 'Download Individual Results'),
 		  hidenextbutton(),
-		  hideloadingimage()
+		  hideloadingimage(),
+      hidesurveyresults()
           )
         )
 	}
