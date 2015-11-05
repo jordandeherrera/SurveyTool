@@ -46,14 +46,20 @@ shinyUI(fluidPage(
   # Show a table summarizing the values entered
   column(5,
 	div(class="panel panel-default", 
-		div(class="panel-body",
+	  div(id="Validation", class="panel-body",
+	        h2("Validation Code"),
+	        h4("Please, input a validation code before beginning the survey.  Survey questions will appear in this section when a valid code is entered.  The validation code helps ensure that all aggregate data reported is valid."),
+	        textInput("Validation.Code","Validation Code:"),
+	        actionButton("Submit.Code", "Submit",class="btn btn-primary")
+	    ),
+    div(class="panel-body",
 			h2("Survey Questions"),
 			# Main Action is where most everything is happenning in the
 			# object (where the welcome message, survey, and results appear)
 			uiOutput("MainAction"),
 			# This displays the action putton Next.
-			actionButton("Click.Counter", "Next",class="btn btn-primary")    
-		)  
+			shinyjs::hidden(div(id="survey", actionButton("Click.Counter", "Next",class="btn btn-primary")))    
+		)
     ))),
   fluidRow(
 	column(12,

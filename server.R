@@ -122,6 +122,23 @@ shinyServer(function(input, output) {
 	}   
   })
   
+  if (file.exists("Validation.Rdata")) {load(file="Validation.Rdata")}
+  
+  # Check to see if the validation code exists within the data frame and has already been used
+  shinyjs::onclick("Submit.Code",    
+                   if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
+                   {
+                     shinyjs::toggle(id="survey")
+                     shinyjs::hide(id="Validation")
+                     Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
+                     save(Validation.Code, file="Validation.Rdata")
+                   }
+                   else
+                   {
+                     shinyjs::info("Invalid code.  Please, try again.")
+                   }
+  )
+  
   # This reactive function is concerned primarily with
   # saving the results of the survey for this individual.
   output$save.results <- renderText({
