@@ -131,6 +131,7 @@ shinyServer(function(input, output) {
                      shinyjs::toggle(id="survey")
                      shinyjs::hide(id="Validation")
                      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
+                     Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(Qlist)+1
                      save(Validation.Code, file="Validation.Rdata")
                    }
                    else
@@ -153,21 +154,13 @@ shinyServer(function(input, output) {
     # If the user has clicked through all of the survey questions
     # then R saves the results to the survey file.
     else if (input$Click.Counter>nrow(Qlist)) {
-      if (file.exists("survey.results.Rdata")) {
+      if (file.exists("survey.results.Rdata")) 
         load(file="survey.results.Rdata")
-      
-        # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)+1
-        save(Validation.Code, file="Validation.Rdata")}
-      if (!file.exists("survey.results.Rdata")) {
-        
-        # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- 1
-        save(Validation.Code, file="Validation.Rdata")
-        presults<-NULL}
-      
+      if (!file.exists("survey.results.Rdata")) 
+        presults<-NULL
       presults <- presults <<- rbind(presults, results)
-      rownames(presults) <- rownames(presults) <<- paste("Respondent ", 1:nrow(presults))
+      rownames(presults) <- rownames(presults) <<- 
+        paste("Respondent ", 1:nrow(presults))
       save(presults, file="survey.results.Rdata")
 	  
 	  ######
