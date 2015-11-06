@@ -159,7 +159,7 @@ shinyServer(function(input, output) {
         presults<-NULL
       presults <- presults <<- rbind(presults, results)
       rownames(presults) <- rownames(presults) <<- 
-        paste("User", 1:nrow(presults))
+        paste("Respondent ", 1:nrow(presults))
       save(presults, file="survey.results.Rdata")
 	  
 	  ######
