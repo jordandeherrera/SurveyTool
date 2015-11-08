@@ -153,6 +153,10 @@ shinyServer(function(input, output) {
     # If the user has clicked through all of the survey questions
     # then R saves the results to the survey file.
     else if (input$Click.Counter>nrow(Qlist)) {
+      
+      # Show the popup upon completion of the survey
+      shinyjs::toggle(id="popup")                        
+      
       if (file.exists("survey.results.Rdata")) {
         load(file="survey.results.Rdata")
       
