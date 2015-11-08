@@ -11,7 +11,7 @@ shinyUI(fluidPage(
   ),
   
   #  Application title
-  headerPanel("Project Management Survey"),
+  headerPanel("Analytics Capability Level Survey"),
   
   # Loading image gif
   div(id="loading",
@@ -30,11 +30,11 @@ shinyUI(fluidPage(
       h6(textOutput("save.results")),
       
 	  h2("About the Survey"),
-	  h5("The following survey was designed as a self-evaluation and benchmarking tool to determine competencies across the categories listed in the Project Management Framework as determined by the Project Management Institute.  The competency levels follow the developmental model defined by the Capability Maturity Model framework.  A guide for the PMBOK can be found through the following link:"),
-	  tags$a(href="http://www.cs.bilkent.edu.tr/~cagatay/cs413/PMBOK.pdf",class="btn btn-primary btn-lg","Learn More About PMBOK"),
+	  h5("The following survey was designed as a self-evaluation and benchmarking tool to determine competencies across data science and analytics categories.  The competency levels follow the developmental model defined by the Capability Maturity Model framework.  Verasite has created a simple walkthrough document of how the concepts in this survey fit together to determine an organization's competencies, maturity level, and relative competitive advantage:"),
+	  tags$a(href="http://www.cs.bilkent.edu.tr/~cagatay/cs413/PMBOK.pdf",class="btn btn-primary btn-lg","Learn More About Real Estate Data Science"),
     
 	h2("How It Works"),
-	h5("The survey tool is designed to provide valuable data about your organization's project management maturity model.  In addition to being a self-assessment tool, the survey tool gathers data from all respondents along with some basic demographic data in order to provide relevant benchmarks to all respondents.  Benchmark data is provided at the end of the survey.  All data is self-reported.  Current survey demographics are listed in the 'Survey Statistics' section and are automatically updated with each completed survey result."),
+	h5("The survey tool is designed to provide valuable data about your organization's data science and analytics maturity level.  In addition to being a self-assessment tool, the survey tool gathers data from all respondents along with some basic demographic data in order to provide relevant benchmarks to all respondents.  Benchmark data is provided at the end of the survey.  All data is self-reported.  Current survey demographics are listed in the 'Survey Statistics' section and are automatically updated with each completed survey result."),
 	
 	h2("Survey Instructions"),
 	tags$li("Click the 'Next' button to get started"),
