@@ -18,6 +18,19 @@ shinyUI(fluidPage(
 	img(id="loading-image", `src`="loading.gif", `alt`="Loading...")
   ),
   
+  # Popup for follow-up
+  shinyjs::hidden(div(id="popup",
+                      column(6,
+                             div(class="panel panel-default", 
+                                 div(class="panel-body",
+                                     h4("Would you like more informatio on how your organization can improve upon its capacities in analytics and data science?"),
+                                     textInput("Email","E-mail:"),br(),
+                                     actionButton("Submit.Yes", "Yes!  I'd like to learn more.",class="btn btn-primary"),br(),                                       
+                                     actionButton("Submit.No", "No, thanks.",class="btn btn-primary")
+                                 )
+                             )
+                      )
+  )),
   
   #  Jumbotron to explain the survey, etc.
   fluidRow(
