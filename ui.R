@@ -19,18 +19,17 @@ shinyUI(fluidPage(
   ),
   
   # Popup for follow-up
-  shinyjs::hidden(div(id="popup",
-                      column(6,
-                             div(class="panel panel-default", 
-                                 div(class="panel-body",
-                                     h4("Would you like more informatio on how your organization can improve upon its capacities in analytics and data science?"),
-                                     textInput("Email","E-mail:"),br(),
-                                     actionButton("Submit.Yes", "Yes!  I'd like to learn more.",class="btn btn-primary"),br(),                                       
-                                     actionButton("Submit.No", "No, thanks.",class="btn btn-primary")
-                                 )
-                             )
-                      )
-  )),
+  fluidRow(
+    column(12,
+           shinyjs::hidden(div(id="popup",
+                               div(class="alert alert-dismissible alert-info",
+                                   h4("Thanks for taking the survey!  Your results as well as a summary of all respondents based on various groupings are available at the bottom of this page.  Would you like more informatio on how your organization can improve upon its capacities in analytics and data science?"),
+                                   textInput("Email","E-mail:"),br(),
+                                   actionButton("Submit.Yes", "Yes!  I'd like to learn more.",class="btn btn-primary"),                                       
+                                   actionButton("Submit.No", "No, thanks.",class="btn btn-primary")
+                               )
+           ))
+  )),  
   
   #  Jumbotron to explain the survey, etc.
   fluidRow(
@@ -102,6 +101,7 @@ shinyUI(fluidPage(
   		  )
   	  )
     )
-    )
+    )                      
+                      
 	))
 ))
