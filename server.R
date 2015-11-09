@@ -180,16 +180,13 @@ shinyServer(function(input, output) {
     
     # If the user has clicked through all of the survey questions
     # then R saves the results to the survey file.
-    else if (input$Click.Counter>nrow(Qlist)) {
-      
-      # Show the popup upon completion of the survey
-      shinyjs::toggle(id="popup")                        
+    else if (input$Click.Counter>nrow(Qlist)) {                       
       
       if (file.exists("survey.results.Rdata")) {
         load(file="survey.results.Rdata")
       
         # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)+1
+        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)
         save(Validation.Code, file="Validation.Rdata")}
       if (!file.exists("survey.results.Rdata")) {
         
@@ -201,6 +198,9 @@ shinyServer(function(input, output) {
       presults <- presults <<- rbind(presults, results)
       rownames(presults) <- rownames(presults) <<- paste("Respondent ", 1:nrow(presults))
       save(presults, file="survey.results.Rdata")
+      
+      # Show the popup upon completion of the survey
+      shinyjs::toggle(id="popup") 
 	  
 	  ######
 	  #Sector and Market Cap Score Calcs
