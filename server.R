@@ -122,22 +122,33 @@ shinyServer(function(input, output) {
 	}   
   })
   
+  # Load validation file if it exists
   if (file.exists("Validation.Rdata")) {load(file="Validation.Rdata")}
   
   # Check to see if the validation code exists within the data frame and has already been used
-  shinyjs::onclick("Submit.Code",    
-                   if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
-                   {
-                     shinyjs::toggle(id="survey")
-                     shinyjs::hide(id="Validation")
-                     shinyjs::hide(id="codeerror")
-                     Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
-                     save(Validation.Code, file="Validation.Rdata")
-                   }
-                   else
-                   {
-                     shinyjs::show("codeerror")
-                   }
+  shinyjs::onclick("Submit.Code", 
+                   return(list(
+                     ValidationCode <- paste(input$Validation.Code),
+                     if(ValidationCode %in% Validation.Code$Code)
+                     {
+                       if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
+                       {
+                         shinyjs::toggle(id="survey")
+                         shinyjs::hide(id="Validation")
+                         shinyjs::hide(id="codeerror")
+                         Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
+                         save(Validation.Code, file="Validation.Rdata")
+                       }
+                       else
+                       {
+                         shinyjs::show("codeerror")
+                       }
+                     }
+                     else
+                     {
+                       shinyjs::show("codeerror")
+                     }
+                  ))
   )
   
   # Button functionality of contact popup
