@@ -139,6 +139,24 @@ shinyServer(function(input, output) {
                    }
   )
   
+  # Button functionality of contact popup
+  
+  # If the user clicks no, then close the popup
+  shinyjs::onclick("Submit.No",    
+                     shinyjs::toggle(id="popup")
+  )
+  
+  # If the user clicks yes, then modify the validation.code file to reflect the contact details
+  shinyjs::onclick("Submit.Yes",
+                   return(list(
+                     Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
+                     Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- input$Email,
+                     save(Validation.Code, file="Validation.Rdata"),
+                     shinyjs::toggle(id="popup"),
+                     shinyjs::toggle(id="thanks")
+                   ))
+  )  
+  
   # This reactive function is concerned primarily with
   # saving the results of the survey for this individual.
   output$save.results <- renderText({

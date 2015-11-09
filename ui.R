@@ -29,7 +29,17 @@ shinyUI(fluidPage(
                                    actionButton("Submit.No", "No, thanks.",class="btn btn-primary")
                                )
            ))
-  )),  
+  )),
+  
+  # Popup thanks - successfully submitted
+  fluidRow(
+    column(12,
+           shinyjs::hidden(div(id="thanks",
+                               div(class="alert alert-dismissible alert-success",
+                                   h4("Thanks!  We'll be in touch in the next couple of days using the e-mail address you provided.")                                   
+                               )
+           ))
+    )),
   
   #  Jumbotron to explain the survey, etc.
   fluidRow(
@@ -97,7 +107,6 @@ shinyUI(fluidPage(
   			dataTableOutput("surveyresultstablemarketcap"),
   			h3("Self-Evaluation Summary"),
   			htmlOutput("surveyresultsindividual")
-  			#htmlOutput("surveyresults")
   		  )
   	  )
     )
