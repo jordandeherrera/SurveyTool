@@ -148,13 +148,23 @@ shinyServer(function(input, output) {
   
   # If the user clicks yes, then modify the validation.code file to reflect the contact details
   shinyjs::onclick("Submit.Yes",
-                   return(list(
-                     Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
-                     Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- input$Email,
-                     save(Validation.Code, file="Validation.Rdata"),
-                     shinyjs::toggle(id="popup"),
-                     shinyjs::toggle(id="thanks")
-                   ))
+                   if(grepl("@",paste(input$Email)) & grepl(".com",paste(input$Email)))
+                   {
+                     return(list(
+                       Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
+                       Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- input$Email,
+                       save(Validation.Code, file="Validation.Rdata"),
+                       shinyjs::toggle(id="popup"),
+                       shinyjs::hide(id="error"),
+                       shinyjs::toggle(id="thanks")
+                     ))
+                   }
+                   else
+                   {
+                     return(list(
+                       shinyjs::show(id="error")
+                     ))
+                   }
   )  
   
   # This reactive function is concerned primarily with

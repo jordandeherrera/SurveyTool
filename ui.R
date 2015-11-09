@@ -18,6 +18,16 @@ shinyUI(fluidPage(
 	img(id="loading-image", `src`="loading.gif", `alt`="Loading...")
   ),
   
+  # Popup error
+  fluidRow(
+    column(12,
+           shinyjs::hidden(div(id="error",
+                               div(class="alert alert-dismissible alert-danger",
+                                   h4("Oops!  Please, double-check your e-mail address.")                                   
+                               )
+           ))
+    )),  
+  
   # Popup for follow-up
   fluidRow(
     column(12,
