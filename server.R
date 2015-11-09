@@ -166,7 +166,7 @@ shinyServer(function(input, output) {
                      load(file="Validation.Rdata")
                      return(list(
                        Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
-                       Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- isolate(input$Email),
+                       Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- paste(input$Email),
                        save(Validation.Code, file="Validation.Rdata"),
                        shinyjs::toggle(id="popup"),
                        shinyjs::hide(id="error"),
