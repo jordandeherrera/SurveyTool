@@ -73,10 +73,18 @@ shinyUI(fluidPage(
 	tags$li("Please, fill out demographic data as it helps in providing insight and relevant benchmarks to other respondents"),
 	tags$li("Assess your organization's competency for each statement based on the most appropriate capability maturity level listed")
 	)),
-
   
   # Show a table summarizing the values entered
   column(5,
+         
+   # Error for validation
+   shinyjs::hidden(div(id="codeerror",
+                       div(class="alert alert-dismissible alert-danger",
+                           h4("Oops!  Please, enter a valid code.")
+                       )
+   )),
+  
+  # Validation code for entering data into the survey       
 	div(class="panel panel-default", 
 	  div(id="Validation", class="panel-body",
 	        h2("Validation Code"),

@@ -130,12 +130,13 @@ shinyServer(function(input, output) {
                    {
                      shinyjs::toggle(id="survey")
                      shinyjs::hide(id="Validation")
+                     shinyjs::hide(id="codeerror")
                      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
                      save(Validation.Code, file="Validation.Rdata")
                    }
                    else
                    {
-                     shinyjs::info("Invalid code.  Please, try again.")
+                     shinyjs::show("codeerror")
                    }
   )
   
