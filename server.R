@@ -129,7 +129,7 @@ shinyServer(function(input, output) {
                    if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
                    {
                      # Load validation data again in case it has changed
-                     if (file.exists("Validation.Rdata")) {load(file="Validation.Rdata")}
+                     load(file="Validation.Rdata")
                      shinyjs::toggle(id="survey")
                      shinyjs::hide(id="Validation")
                      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
@@ -184,22 +184,15 @@ shinyServer(function(input, output) {
     # then R saves the results to the survey file.
     else if (input$Click.Counter>nrow(Qlist)) {                       
       
-      if (file.exists("survey.results.Rdata")) {
-        load(file="survey.results.Rdata")
-      
-        # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)+1
-        save(Validation.Code, file="Validation.Rdata")}
-      if (!file.exists("survey.results.Rdata")) {
-        
-        # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- 1
-        save(Validation.Code, file="Validation.Rdata")
-        presults<-NULL}
-      
+      # Save presults to Rdata file
       presults <- presults <<- rbind(presults, results)
       rownames(presults) <- rownames(presults) <<- paste("Respondent ", 1:nrow(presults))
       save(presults, file="survey.results.Rdata")
+      
+      #Set response number equal to the respondent's row number so that results can be matched to respondents 
+      load(file="Validation.Rdata")
+      Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)
+      save(Validation.Code, file="Validation.Rdata")
       
       # Show the popup upon completion of the survey
       shinyjs::toggle(id="popup") 
