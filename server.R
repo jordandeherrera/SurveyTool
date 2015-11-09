@@ -150,9 +150,9 @@ shinyServer(function(input, output) {
   shinyjs::onclick("Submit.Yes",
                    if(grepl("@",paste(input$Email)) & grepl(".com",paste(input$Email)))
                    {
+                     # Load validation data again in case it has changed
+                     load(file="Validation.Rdata")
                      return(list(
-                       # Load validation data again in case it has changed
-                       load(file="Validation.Rdata")
                        Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
                        Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- isolate(input$Email),
                        save(Validation.Code, file="Validation.Rdata"),
