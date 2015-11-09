@@ -128,6 +128,8 @@ shinyServer(function(input, output) {
   shinyjs::onclick("Submit.Code",    
                    if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
                    {
+                     # Load validation data again in case it has changed
+                     if (file.exists("Validation.Rdata")) {load(file="Validation.Rdata")}
                      shinyjs::toggle(id="survey")
                      shinyjs::hide(id="Validation")
                      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
@@ -186,7 +188,7 @@ shinyServer(function(input, output) {
         load(file="survey.results.Rdata")
       
         # Save the response number as the next available row
-        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)
+        Validation.Code[Validation.Code$Code == input$Validation.Code, 6] <- nrow(presults)+1
         save(Validation.Code, file="Validation.Rdata")}
       if (!file.exists("survey.results.Rdata")) {
         
