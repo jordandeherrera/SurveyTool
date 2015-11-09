@@ -128,8 +128,6 @@ shinyServer(function(input, output) {
   shinyjs::onclick("Submit.Code",    
                    if(Validation.Code[Validation.Code$Code == input$Validation.Code, 2] < 1)
                    {
-                     # Load validation data again in case it has changed
-                     load(file="Validation.Rdata")
                      shinyjs::toggle(id="survey")
                      shinyjs::hide(id="Validation")
                      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
@@ -153,6 +151,8 @@ shinyServer(function(input, output) {
                    if(grepl("@",paste(input$Email)) & grepl(".com",paste(input$Email)))
                    {
                      return(list(
+                       # Load validation data again in case it has changed
+                       load(file="Validation.Rdata")
                        Validation.Code[Validation.Code$Code == input$Validation.Code, 8] <- 1,
                        Validation.Code[Validation.Code$Code == input$Validation.Code, 7] <- isolate(input$Email),
                        save(Validation.Code, file="Validation.Rdata"),
