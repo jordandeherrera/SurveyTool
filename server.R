@@ -196,6 +196,11 @@ shinyServer(function(input, output) {
     # then R saves the results to the survey file.
     else if (input$Click.Counter>nrow(Qlist)) {                       
       
+      if (file.exists("survey.results.Rdata")) 
+        load(file="survey.results.Rdata")
+      if (!file.exists("survey.results.Rdata")) 
+        presults<-NULL
+      
       # Save presults to Rdata file
       presults <- presults <<- rbind(presults, results)
       rownames(presults) <- rownames(presults) <<- paste("Respondent ", 1:nrow(presults))
