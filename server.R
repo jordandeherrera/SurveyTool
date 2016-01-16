@@ -136,8 +136,6 @@ shinyServer(function(input, output) {
                          shinyjs::toggle(id="survey")
                          shinyjs::hide(id="Validation")
                          shinyjs::hide(id="codeerror")
-                         Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
-                         save(Validation.Code, file="Validation.Rdata")
                        }
                        else
                        {
@@ -194,7 +192,13 @@ shinyServer(function(input, output) {
     
     # If the user has clicked through all of the survey questions
     # then R saves the results to the survey file.
-    else if (input$Click.Counter>nrow(Qlist)) {                       
+    else if (input$Click.Counter>nrow(Qlist)) {     
+      
+      # This line of the code marks the survey as taken for the user
+      # It can be moved depending on desired functionality
+      # Update survey as taken after completion of survey or after entering code
+      Validation.Code[Validation.Code$Code == input$Validation.Code, 2] <- 1
+      save(Validation.Code, file="Validation.Rdata")
       
       if (file.exists("survey.results.Rdata")) 
         load(file="survey.results.Rdata")
