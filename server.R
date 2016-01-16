@@ -47,7 +47,7 @@ shinyServer(function(input, output) {
 		load(file="survey.results.Rdata")
 		
 		#Create demographic data frames dynamically
-		for (i in 1:3)
+		for (i in 1:2)
 			{
 			presults.1 <- unique(presults[,i])
 
@@ -80,9 +80,9 @@ shinyServer(function(input, output) {
 			Demographic.2}, include.rownames=FALSE
 		)		
 		
-		output$Demographic.3 <- renderTable({
-			Demographic.3}, include.rownames=FALSE
-		)		
+		#output$Demographic.3 <- renderTable({
+		#	Demographic.3}, include.rownames=FALSE
+		#)		
 	}
 	
   

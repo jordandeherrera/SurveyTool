@@ -109,8 +109,8 @@ shinyUI(fluidPage(
 			h5(textOutput("counter")),
 			#htmlOutput("Demographic.1.plot"),			
 			tableOutput("Demographic.1"),
-			tableOutput("Demographic.2"),
-			tableOutput("Demographic.3")
+			tableOutput("Demographic.2")
+			#tableOutput("Demographic.3")
 		)
 	))),
 	shinyjs::hidden(div(id="results",
