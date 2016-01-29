@@ -63,7 +63,7 @@ shinyUI(fluidPage(
       
 	  h2("About the Survey"),
 	  h5("The following survey was designed as a self-evaluation and benchmarking tool to determine competencies across data science and analytics categories.  The competency levels follow the developmental model defined by the Capability Maturity Model framework.  Verasite has created a simple walkthrough document of how the concepts in this survey fit together to determine an organization's competencies, maturity level, and relative competitive advantage:"),
-	  tags$a(href="http://www.cs.bilkent.edu.tr/~cagatay/cs413/PMBOK.pdf",class="btn btn-primary btn-lg","Learn More About Real Estate Data Science"),
+	  tags$a(href="Verasite.pdf",class="btn btn-primary btn-lg","Learn More About Real Estate Data Science"),
     
 	h2("How It Works"),
 	h5("The survey tool is designed to provide valuable data about your organization's data science and analytics maturity level.  In addition to being a self-assessment tool, the survey tool gathers data from all respondents along with some basic demographic data in order to provide relevant benchmarks to all respondents.  Benchmark data is provided at the end of the survey.  All data is self-reported.  Current survey demographics are listed in the 'Survey Statistics' section and are automatically updated with each completed survey result."),
