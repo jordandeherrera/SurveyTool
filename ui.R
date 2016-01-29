@@ -71,7 +71,19 @@ shinyUI(fluidPage(
 	h2("Survey Instructions"),
 	tags$li("Click the 'Next' button to get started"),
 	tags$li("Please, fill out demographic data as it helps in providing insight and relevant benchmarks to other respondents"),
-	tags$li("Assess your organization's competency for each statement based on the most appropriate capability maturity level listed")
+	tags$li("Assess your organization's competency for each statement based on the most appropriate capability maturity level listed"),
+	h3("Validation Codes"),
+	h5("Here are some validation codes to try.  Normally these would be hidden, but they are displayed here for evaluation purposes for Coursera."),
+	tags$li("yTwkv"),
+	tags$li("sRgRj"),
+	tags$li("pMmse"),
+	tags$li("xm6EK"),
+	tags$li("QYWVP"),
+	tags$li("lN2ZK"),
+	tags$li("DrksI"),
+	tags$li("95O35"),
+	tags$li("6Dnj8"),
+	tags$li("WSHiX")
 	)),
   
   # Show a table summarizing the values entered
